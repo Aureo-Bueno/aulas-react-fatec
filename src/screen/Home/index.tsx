@@ -1,9 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { Button, Text, TextInput, View } from 'react-native';
-import { addButton } from '../hooks/customHook';
-import { styles } from '../../styles';
-import { IUser } from '../../types';
+import { addButton } from '../../hooks/customHook';
+import { styles } from '../../../styles';
+import { IUser } from '../../../types';
+import { NavigationStackProp } from 'react-navigation-stack';
 
 const initialUser: IUser = {
     name: 'Aureo',
@@ -15,7 +16,11 @@ const removeUser: IUser = {
   lasName: ''
 }
 
-export const Home = () => {
+interface IHomeProps {
+  navigation: NavigationStackProp<any,any>
+};
+
+export const Home = ({ navigation }: IHomeProps ) => {
   const [name, setName] = useState<IUser>({ name: '', lasName: '' });  
   const { sizeText, container } = styles;
   const { add, addValue, decreaseValue, resetValue } = addButton();
@@ -33,6 +38,7 @@ export const Home = () => {
       <Button onPress={() => resetValue()} title='Resetar Valor' />
       <Text style={sizeText}>Valor: {add}</Text>
       <StatusBar style="auto" />
+      <Button title='Ir para Detalhes' onPress={() => navigation.navigate('Details')} />
     </View>
   );
 }
