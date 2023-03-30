@@ -1,24 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { Button, Text, TextInput, View } from 'react-native';
-import { addButton } from '../../hooks/customHook';
+import { addButton, initialUser, removeUser } from '../../hooks/customHook';
 import { styles } from '../../../styles';
 import { IUser } from '../../../types';
-import { NavigationStackProp } from 'react-navigation-stack';
-
-const initialUser: IUser = {
-    name: 'Aureo',
-    lasName: 'Bueno'
-}
-
-const removeUser: IUser = {
-  name: '',
-  lasName: ''
-}
-
-interface IHomeProps {
-  navigation: NavigationStackProp<any,any>
-};
+import { IHomeProps } from './@types';
 
 export const Home = ({ navigation }: IHomeProps ) => {
   const [name, setName] = useState<IUser>({ name: '', lasName: '' });  

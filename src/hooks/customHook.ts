@@ -1,4 +1,15 @@
-import { useState } from "react"
+import { useState } from "react";
+import { IUser } from "../../types";
+
+export const initialUser: IUser = {
+    name: 'Aureo',
+    lasName: 'Bueno'
+}
+
+export const removeUser: IUser = {
+  name: '',
+  lasName: ''
+}
 
 
 export const addButton = () => {
