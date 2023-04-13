@@ -25,6 +25,7 @@ export const Home = ({ navigation }: IHomeProps ) => {
       <Text style={sizeText}>Valor: {add}</Text>
       <StatusBar style="auto" />
       <Button title='Ir para Detalhes' onPress={() => navigation.navigate('Details')} />
+      <Button title='Ir para User' onPress={() => navigation.navigate('User')} />
     </View>
   );
 }

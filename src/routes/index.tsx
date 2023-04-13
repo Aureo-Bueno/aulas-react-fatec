@@ -1,7 +1,8 @@
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Details from "../screen/Details";
-import { Home } from "../screen/Home";
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Details from '../screen/Details';
+import { Home } from '../screen/Home';
+import User from '../screen/User';
 
 const Stack = createNativeStackNavigator();
 
@@ -11,6 +12,7 @@ export default function AppRoutes() {
         <Stack.Navigator>
           <Stack.Screen name='Home' component={Home} options={{title: 'Home - home'}}></Stack.Screen>
           <Stack.Screen name='Details' component={Details}></Stack.Screen>
+          <Stack.Screen name='User' component={User}></Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
     );

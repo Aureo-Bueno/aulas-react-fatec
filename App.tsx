@@ -1,7 +1,12 @@
-import AppRoutes from "./src/routes";
+import { QueryClientProvider, QueryClient } from 'react-query';
+import AppRoutes from './src/routes';
+
+const query = new QueryClient();
 
 export default function App () {
   return (
-    <AppRoutes />
+    <QueryClientProvider client={query}>
+      <AppRoutes />
+    </QueryClientProvider>
   );
 }
