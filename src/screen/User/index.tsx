@@ -1,11 +1,20 @@
-import { Text, FlatList, View } from 'react-native';
+import { Text, FlatList, View, TextInput, Button, Pressable, Touchable, TouchableOpacity } from 'react-native';
 import { IUser } from './@types';
 import { useQuery } from 'react-query';
-import { useGetUser } from '../../service';
+import { useGetUser, useSearchUser } from '../../service';
 import { styles } from './styles';
+import { useState } from 'react';
+import { IHomeProps } from '../Home/@types';
+import { useNavigation } from '@react-navigation/native';
 
-function User() {
+function User({ navigation }: IHomeProps) {
+  const [id, setId] = useState('');
   const { data, isLoading, isError } = useQuery<IUser[], Error>('users', useGetUser);
+  const teste = useNavigation();
+
+  // const searchUser = () => {
+  //   const { data } = useQuery<IUser, Error>('users', () => useSearchUser(id));
+  // }
 
   return(
     <View style={styles.view}>
@@ -20,18 +29,33 @@ function User() {
           <FlatList 
             data={data} 
             keyExtractor={item => item.id}
-            renderItem={({item}) => <Text>{item.first_name}</Text>} 
+            renderItem={({item}) => (
+              <TouchableOpacity onPress={() => navigation.navigate('Details User', { id: item.id })}> 
+                <Text>Nome completo:{item.first_name} - {item.last_name}</Text>
+              </TouchableOpacity>
+            )} 
           >
           </FlatList>
         </View>
 
-        <View style={styles.viewMap}>
+        {/* <View style={styles.viewMap}>
           {data?.map((user) => (
             <View>
-              <Text>{user.first_name}</Text>
+              <TouchableOpacity onPress={navigation.navigate('Details User', { id: user.id })}> 
+                <Text key={user.id}>{user.first_name}</Text>
+              </TouchableOpacity>
             </View>
           ))}
-        </View>
+        </View> */}
+        {/* <TextInput
+          placeholder='Digite o id do usuário'
+          onChangeText={setId}
+          value={id}
+        />
+        <Button 
+          title='Buscar'
+          onPress={searchUser}
+        /> */}
     </View>
   );
 }

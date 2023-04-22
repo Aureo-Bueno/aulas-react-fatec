@@ -12,6 +12,11 @@ export const useGetUser = async () => {
   return response.data.data;
 }
 
+export const useSearchUser = async (id: string) => {
+  const response = await axiosApi.get(`/users/${id}`);
+  return response.data.data;
+}
+
 export const useCreateUser = async ({ first_name, last_name } : IUser) => {
   const response = await axiosApi.post('/users', {first_name, last_name});
   return response.data.data;
